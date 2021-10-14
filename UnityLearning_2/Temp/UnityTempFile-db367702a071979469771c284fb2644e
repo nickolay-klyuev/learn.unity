@@ -311,8 +311,13 @@
 /define:UNITY_STANDALONE_LINUX_API
 /define:UNITY_TEAM_LICENSE
 /define:USE_SEARCH_ENGINE_API
-"Assets/DetectCollision.cs"
+"Assets/Challenge 2/Scripts/DestroyOutOfBoundsX.cs"
+"Assets/Challenge 2/Scripts/DetectCollisionsX.cs"
+"Assets/Challenge 2/Scripts/MoveForwardX.cs"
+"Assets/Challenge 2/Scripts/PlayerControllerX.cs"
+"Assets/Challenge 2/Scripts/SpawnManagerX.cs"
 "Assets/Scripts/DestroyOutOfBounds.cs"
+"Assets/Scripts/DetectCollision.cs"
 "Assets/Scripts/MoveForwardScript.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/SpawnManager.cs"
