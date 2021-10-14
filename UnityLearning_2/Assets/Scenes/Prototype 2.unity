@@ -698,3 +698,5 @@ MonoBehaviour:
   - {fileID: 8992900385293087337, guid: ccb4cf4850ba04e38896b6bbb2727801, type: 3}
   - {fileID: 423152799661113103, guid: b0a672cfd69d72430b247a9694cb330d, type: 3}
   - {fileID: 186755684246085345, guid: 6e408a21a94fda667bd4d25dcc7eaedb, type: 3}
+  initialDelay: 2
+  spawnInterval: 1.5

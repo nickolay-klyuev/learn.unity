@@ -17,9 +17,13 @@ public class DestroyOutOfBounds : MonoBehaviour
     void Update()
     {
         float z = transform.position.z;
-        if (z >= maxBound || z <= minBound)
+        if (z >= maxBound)
         {
             Destroy(gameObject);
+        } else if (z <= minBound)
+        {
+            Destroy(gameObject);
+            Debug.Log("Game over");
         }
     }
 }
