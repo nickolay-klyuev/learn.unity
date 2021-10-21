@@ -1,45 +1,49 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private GameObject projectile;
-    [SerializeField] private float moveSpeed = 10f;
-
     private float horizontalInput;
-    private Transform thisTransform;
+    private float speed = 20.0f;
+    private float xRange = 20;
+    public GameObject projectilePrefab;
 
-    private float xRange = 10f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        thisTransform = transform;
-    }
 
     // Update is called once per frame
     void Update()
     {
-        // fire projectile
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Check for left and right bounds
+        if (transform.position.x < -xRange)
         {
-            Instantiate(projectile, thisTransform.position, Quaternion.identity);
+            transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
         }
 
-        // move player within bounds
-        if (thisTransform.position.x <= xRange && thisTransform.position.x >= -xRange)
+        if (transform.position.x > xRange)
         {
-            horizontalInput = Input.GetAxis("Horizontal");
-            thisTransform.Translate(Vector3.right * horizontalInput * Time.deltaTime * moveSpeed);
+            transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
-        else if (thisTransform.position.x >= xRange)
+
+        // Player movement left to right
+        horizontalInput = Input.GetAxis("Horizontal");
+        transform.Translate(Vector3.right * Time.deltaTime * speed * horizontalInput);
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            thisTransform.position = new Vector3(xRange, thisTransform.position.y, thisTransform.position.z);
+            // No longer necessary to Instantiate prefabs
+            // Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+
+            // Get an object object from the pool
+            GameObject pooledProjectile = ObjectPooler.SharedInstance.GetPooledObject();
+            if (pooledProjectile != null)
+            {
+                pooledProjectile.SetActive(true); // activate it
+                pooledProjectile.transform.position = transform.position; // position it at player
+            }
         }
-        else if (thisTransform.position.x <= -xRange)
-        {
-            thisTransform.position = new Vector3(-xRange, thisTransform.position.y, thisTransform.position.z);
-        }
+
+
+
     }
 }
